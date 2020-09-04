@@ -114,15 +114,7 @@ alias gimmefortune="fortune | cowsay -n \
 
 gimmefortune
 
-export WIN="/mnt/c/Users/I532669/"
-
 #cd ~/
 export TERM=xterm-256color
 
 COWPATH="$COWPATH:$HOME/.cowsay"
-
-export PATH="$WIN/maven/apache-maven-3.6.3/bin:$PATH"
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-export PATH="$JAVA_HOME/bin:$PATH"
-export PATH="$WIN/db-derby-10.14.2.0-bin/bin:$PATH"
-export CATALINA_OPTS="-agentlib:jdwp=transport=dt_socket,address=1043,server=y,suspend=n"
