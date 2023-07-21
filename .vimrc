@@ -34,3 +34,8 @@ let vimsyn_folding='af'       " Vim script
 let xml_syntax_folding=1      " XML
 
 au BufEnter,BufNew *.py set foldmethod=indent 
+au BufNewFile,BufRead *.ejs set syntax=html
+au BufRead,BufNewFile *.cds set filetype=cds
+
+set backspace=indent,eol,start
+set mouse=a
