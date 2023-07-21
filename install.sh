@@ -17,11 +17,7 @@ install() {
     fi
     package=$1
 
-    if has apk
-    then 
-        $SUDO apk add --no-cache $package
-
-    elif has apt-get
+    if has apt-get
     then 
         $SUDO apt-get install -y $package
         # workaroung for debian exa not being compiled with git plugin
