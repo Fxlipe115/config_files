@@ -19,13 +19,14 @@ install() {
 
     if has apt-get
     then 
-        $SUDO apt-get install -y $package
         # workaroung for debian exa not being compiled with git plugin
         if [[ "$package" == "exa" ]]
         then
             $SUDO apt-get remove -y exa
             $SUDO apt-get install -y cargo
             cargo install $package
+        else
+            $SUDO apt-get install -y $package
         fi
 
     elif has dnf
