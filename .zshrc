@@ -47,10 +47,11 @@ else
 fi
 
 # Exports
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
-export TERM=xterm-256color
 export COWPATH="$COWPATH:$HOME/.cowsay"
+export GEM_HOME="$HOME/gems"
+export TERM=xterm-256color
+export PATH="$HOME/gems/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Aliases
 alias gimmefortune="fortune | cowsay -n \

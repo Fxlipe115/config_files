@@ -27,7 +27,8 @@ install() {
         # workaroung for debian exa not being compiled with git plugin
         if [ "$package" = "exa" ]
         then
-            $SUDO apt-get install cargo
+            $SUDO apt-get remove -y exa
+            $SUDO apt-get install -y cargo
             cargo install $package
         fi
 
