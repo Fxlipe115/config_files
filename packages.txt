@@ -7,7 +7,7 @@ cowsay
 curl
 dust
 dust
-exa
+eza
 fd
 fetch
 ffmpeg
