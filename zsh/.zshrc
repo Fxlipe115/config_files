@@ -5,6 +5,7 @@ export PATH="/usr/local/bin:$PATH"     # Standard UNIX utilities
 export PATH="$HOME/gems/bin:$PATH"     # Ruby gems
 export PATH="/usr/local/texlive/2024/bin/x86_64-linux:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 ZSH_DISABLE_COMPFIX=true
 export ZSH="$HOME/.oh-my-zsh"
@@ -33,7 +34,7 @@ export EDITOR='nvim'
 alias zshconfig="nvim ~/.zshrc"
 alias vimconfig="nvim ~/.config/nvim/init.lua"
 alias ls="eza -l --classify=always --group-directories-first --icons=always --git"
-alias l="ls -a"
+alias l="eza -l --classify=always --group-directories-first --icons=always --git -a"
 tree() {
     if [ -n "$1" ]; then
         if [ -n "$2" ]; then
@@ -55,13 +56,15 @@ export GEM_HOME="$HOME/gems"
 alias gimmefortune="fortune | cowsay -n \
   -f \$(cowsay -l | tail -n +2 | tr ' ' '\n' | shuf -n1) | lolcat"
 
-neofetch --ascii "$(gimmefortune)" | lolcat -ts 60 # -ad 7
+if [[ -z "$SKIP_BYOBU" ]]; then
+    neofetch --ascii "$(gimmefortune)" | lolcat -ts 60 # -ad 7
+fi
 
 export TERM=xterm-256color
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 
-#eval $(thefuck --alias)
+eval $(thefuck --alias)
 
 #alias python=python3
 alias sqlite=sqlite3
@@ -77,8 +80,8 @@ alias info="neofetch"
 
 # Load nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Google Cloud SDK
 if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
@@ -93,4 +96,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 source ~/.fonts/*.sh
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
