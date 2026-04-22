@@ -18,16 +18,8 @@ install() {
     package=$1
 
     if has apt-get
-    then 
-        # workaroung for debian exa not being compiled with git plugin
-        if [[ "$package" == "exa" ]]
-        then
-            $SUDO apt-get remove -y exa
-            $SUDO apt-get install -y cargo
-            cargo install $package
-        else
-            $SUDO apt-get install -y $package
-        fi
+    then
+        $SUDO apt-get install -y $package
 
     elif has dnf
     then 
@@ -74,9 +66,16 @@ install_oh_my_zsh() {
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 }
 
-copy_dotfiles() {
-    echo "Copying dotfiles..."
-    cp .vimrc .zshrc ~/
+link_dotfiles() {
+    echo "Linking dotfiles..."
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+    cd "$SCRIPT_DIR"
+    stow zsh vim tmux fonts
+    if [ ! -f "$HOME/.gitconfig" ]; then
+        cp "$SCRIPT_DIR/git/.gitconfig" "$HOME/.gitconfig"
+        echo "Copied .gitconfig — update name and email in ~/.gitconfig"
+    fi
+    stow --ignore='.gitconfig' git
 }
 
 final_configurations() {
@@ -87,5 +86,5 @@ final_configurations() {
 
 install_required_packages && \
 install_oh_my_zsh && \
-copy_dotfiles && \
+link_dotfiles && \
 final_configurations

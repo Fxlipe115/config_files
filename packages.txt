@@ -6,7 +6,6 @@ byobu
 cowsay
 curl
 dust
-dust
 eza
 fd
 fetch
@@ -34,6 +33,7 @@ pipes-sh
 python3
 ruby
 sl
+stow
 thefuck
 vim
 wget
