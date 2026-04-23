@@ -64,7 +64,11 @@ export TERM=xterm-256color
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 
-eval "$(thefuck --alias)"
+fuck() {
+    unset -f fuck
+    eval "$(thefuck --alias)"
+    fuck "$@"
+}
 
 #alias python=python3
 alias sqlite=sqlite3
