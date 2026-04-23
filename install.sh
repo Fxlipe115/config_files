@@ -54,11 +54,11 @@ install_required_packages() {
 }
 
 install_oh_my_zsh() {
-    echo "Installing zsh..."
-    if [[ -d $ZSH ]]
-    then
-        rm -rf $ZSH
+    if [[ -d "${ZSH:-$HOME/.oh-my-zsh}" ]]; then
+        echo "Oh My Zsh already installed, skipping..."
+        return
     fi
+    echo "Installing Oh My Zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
     # Plugins
