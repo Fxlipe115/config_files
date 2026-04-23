@@ -64,11 +64,7 @@ export TERM=xterm-256color
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 
-fuck() {
-    unset -f fuck
-    eval "$(thefuck --alias)"
-    fuck "$@"
-}
+eval "$(thefuck --alias)"
 
 #alias python=python3
 alias sqlite=sqlite3
@@ -92,7 +88,6 @@ if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloa
 if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
 
 # Python and PDM settings
-eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
 export PYTHONPATH="$HOME/.local/lib/python3.8/site-packages:$PYTHONPATH"
 
 # iTerm2 shell integration
