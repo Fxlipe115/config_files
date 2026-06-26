@@ -70,7 +70,8 @@ Package-only modules add a `Brewfile.<name>` (macOS) and/or
 
 | Module | Provides |
 |---|---|
-| `salesforce` | Salesforce/Apex VS Code extensions, `jira-cli` |
+| `salesforce` | Salesforce/Apex VS Code extensions |
+| `jira` | `jira-cli` |
 
 ### Adding a module
 

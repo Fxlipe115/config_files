@@ -1,0 +1,10 @@
+# Homebrew Bundle — `jira` module
+#
+# Installed only on machines whose `modules` list (chezmoi config) includes `jira`.
+#
+#   brew bundle --file=Brewfile.jira
+
+tap "ankitpokhrel/jira-cli"
+
+# Feature-rich command-line (CLI) client for Atlassian Jira
+brew "ankitpokhrel/jira-cli/jira-cli"
