@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "darwin" -}}
+eval "$({{ if eq .chezmoi.arch "arm64" }}/opt/homebrew/bin/brew{{ else }}/usr/local/bin/brew{{ end }} shellenv)"
+{{- else -}}
+command -v brew >/dev/null 2>&1 && eval "$(brew shellenv)"
+{{- end }}
+
+if [[ -z "$SKIP_BYOBU" ]]; then
+  _byobu_sourced=1 . "$(command -v byobu-launch)" 2>/dev/null || true
+fi

@@ -1,0 +1,6 @@
+# Managed by chezmoi
+
+Host github.com
+    User git
+    IdentityFile ~/.ssh/github
+    IdentitiesOnly yes

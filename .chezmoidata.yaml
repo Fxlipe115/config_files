@@ -1,0 +1,17 @@
+# Registry of known feature modules.
+#
+# Every module listed here is gated by `.chezmoiignore`: its
+# dot_config/zsh/modules/<name>.zsh fragment is only applied when <name>
+# appears in the machine's `modules` list (set in the chezmoi config).
+#
+# To add a new module:
+#   1. add its name here
+#   2. create dot_config/zsh/modules/<name>.zsh   (shell config, optional)
+#   3. create Brewfile.<name> / packages.<name>.txt (packages, optional)
+knownModules:
+  - node
+  - gcloud
+  - python
+  - ruby
+  - texlive
+  - dotnet

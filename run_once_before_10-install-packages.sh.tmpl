@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="{{ .chezmoi.sourceDir }}"
+MODULES=({{ range (splitList "," .modules) }}{{ with (trim .) }}{{ . | quote }} {{ end }}{{ end }})
+
+{{ if eq .chezmoi.os "darwin" -}}
+# ---------------------------------------------------------------------------
+# macOS — Homebrew + Brewfiles
+# ---------------------------------------------------------------------------
+if ! command -v brew >/dev/null 2>&1; then
+    echo "Installing Homebrew..."
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+eval "$({{ if eq .chezmoi.arch "arm64" }}/opt/homebrew/bin/brew{{ else }}/usr/local/bin/brew{{ end }} shellenv)"
+
+echo "Installing base Brewfile..."
+brew bundle --file="$SOURCE_DIR/Brewfile"
+
+for m in "${MODULES[@]}"; do
+    if [ -f "$SOURCE_DIR/Brewfile.$m" ]; then
+        echo "Installing module packages: $m"
+        brew bundle --file="$SOURCE_DIR/Brewfile.$m"
+    fi
+done
+{{ else -}}
+# ---------------------------------------------------------------------------
+# Linux — packages.txt via the available package manager
+# ---------------------------------------------------------------------------
+install_pkg() {
+    if command -v apt-get >/dev/null 2>&1; then sudo apt-get install -y "$1"
+    elif command -v dnf >/dev/null 2>&1; then sudo dnf install -y "$1"
+    elif command -v pacman >/dev/null 2>&1; then sudo pacman -S --noconfirm "$1"
+    elif command -v zypper >/dev/null 2>&1; then sudo zypper install -y "$1"
+    else echo "No supported package manager found for: $1" >&2; return 1; fi
+}
+
+install_list() {
+    [ -f "$1" ] || return 0
+    while IFS= read -r pkg; do
+        pkg="${pkg%%#*}"; pkg="$(echo "$pkg" | xargs)"
+        [ -z "$pkg" ] && continue
+        install_pkg "$pkg"
+    done < "$1"
+}
+
+echo "Installing base packages..."
+install_list "$SOURCE_DIR/packages.txt"
+
+for m in "${MODULES[@]}"; do
+    if [ -f "$SOURCE_DIR/packages.$m.txt" ]; then
+        echo "Installing module packages: $m"
+        install_list "$SOURCE_DIR/packages.$m.txt"
+    fi
+done
+{{ end -}}
