@@ -1,0 +1,41 @@
+# Homebrew Bundle — `salesforce` module
+#
+# Salesforce / Apex development tooling. Installed only on machines whose
+# `modules` list (chezmoi config) includes `salesforce`.
+#
+#   brew bundle --file=Brewfile.salesforce
+
+tap "ankitpokhrel/jira-cli"
+
+# Feature-rich command-line (CLI) client for Atlassian Jira
+brew "ankitpokhrel/jira-cli/jira-cli"
+
+# VS Code extensions
+vscode "financialforce.lana"
+vscode "peterweinberg.apexdox-vs-code"
+vscode "salesforce.agent-script-language-client"
+vscode "salesforce.agentforce-vibes-autocomplete"
+vscode "salesforce.apex-language-server-extension"
+vscode "salesforce.salesforce-vscode-slds"
+vscode "salesforce.salesforcedx-einstein-gpt"
+vscode "salesforce.salesforcedx-metadata-visualizer-vscode"
+vscode "salesforce.salesforcedx-vscode"
+vscode "salesforce.salesforcedx-vscode-agents"
+vscode "salesforce.salesforcedx-vscode-apex"
+vscode "salesforce.salesforcedx-vscode-apex-debugger"
+vscode "salesforce.salesforcedx-vscode-apex-log"
+vscode "salesforce.salesforcedx-vscode-apex-oas"
+vscode "salesforce.salesforcedx-vscode-apex-replay-debugger"
+vscode "salesforce.salesforcedx-vscode-apex-testing"
+vscode "salesforce.salesforcedx-vscode-core"
+vscode "salesforce.salesforcedx-vscode-expanded"
+vscode "salesforce.salesforcedx-vscode-lightning"
+vscode "salesforce.salesforcedx-vscode-lwc"
+vscode "salesforce.salesforcedx-vscode-metadata"
+vscode "salesforce.salesforcedx-vscode-org"
+vscode "salesforce.salesforcedx-vscode-org-browser"
+vscode "salesforce.salesforcedx-vscode-services"
+vscode "salesforce.salesforcedx-vscode-soql"
+vscode "salesforce.salesforcedx-vscode-ui-preview"
+vscode "salesforce.salesforcedx-vscode-visualforce"
+vscode "salesforce.sfdx-code-analyzer-vscode"

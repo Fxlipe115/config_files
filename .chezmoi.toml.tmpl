@@ -1,0 +1,13 @@
+{{- /* Prompted once per machine; answers are stored in chezmoi's config. */ -}}
+{{- $profile := promptStringOnce . "profile" "Machine profile (work or personal)" -}}
+{{- $modules := promptStringOnce . "modules" "Enabled modules, comma-separated (e.g. node,python,dotnet)" -}}
+{{- $gitName := promptStringOnce . "gitName" "Git user name" "Felipe Graeff" -}}
+{{- $gitEmail := promptStringOnce . "gitEmail" "Git email" -}}
+{{- $useBitwarden := promptBoolOnce . "useBitwarden" "Use Bitwarden for SSH keys" -}}
+
+[data]
+    profile = {{ $profile | quote }}
+    modules = {{ $modules | quote }}
+    gitName = {{ $gitName | quote }}
+    gitEmail = {{ $gitEmail | quote }}
+    useBitwarden = {{ $useBitwarden }}

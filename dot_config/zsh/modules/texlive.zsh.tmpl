@@ -1,0 +1,6 @@
+# TeX Live
+{{ if eq .chezmoi.os "linux" -}}
+export PATH="/usr/local/texlive/2024/bin/x86_64-linux:$PATH"
+{{- else -}}
+# On macOS TeX Live is installed via Homebrew and is already on PATH.
+{{- end }}
