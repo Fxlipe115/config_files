@@ -5,11 +5,6 @@
 #
 #   brew bundle --file=Brewfile.salesforce
 
-tap "ankitpokhrel/jira-cli"
-
-# Feature-rich command-line (CLI) client for Atlassian Jira
-brew "ankitpokhrel/jira-cli/jira-cli"
-
 # VS Code extensions
 vscode "financialforce.lana"
 vscode "peterweinberg.apexdox-vs-code"
