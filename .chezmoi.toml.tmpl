@@ -1,6 +1,6 @@
 {{- /* Prompted once per machine; answers are stored in chezmoi's config. */ -}}
 {{- $profile := promptChoiceOnce . "profile" "Machine profile" (list "personal" "work") -}}
-{{- $moduleChoices := list "node" "gcloud" "python" "ruby" "texlive" "dotnet" "salesforce" "jira" -}}
+{{- $moduleChoices := list "node" "gcloud" "python" "ruby" "texlive" "dotnet" "salesforce" "jira" "claude" -}}
 {{- $modules := promptMultichoiceOnce . "modules" "Enabled modules" $moduleChoices -}}
 {{- $gitName := promptStringOnce . "gitName" "Git user name" "Felipe Graeff" -}}
 {{- $personalEmail := promptStringOnce . "personalEmail" "Personal git email" -}}

@@ -1,0 +1,10 @@
+# Homebrew Bundle — `claude` module
+#
+# Installed only on machines whose `modules` list (chezmoi config) includes `claude`.
+# The CLI itself is installed by run_once_after_30-install-claude.sh (official
+# installer), and plugin/marketplace config is applied from dot_claude/settings.json.
+#
+#   brew bundle --file=Brewfile.claude
+
+# Claude Code for VS Code
+vscode "anthropic.claude-code"

@@ -72,6 +72,7 @@ Package-only modules add a `Brewfile.<name>` (macOS) and/or
 |---|---|
 | `salesforce` | Salesforce/Apex VS Code extensions |
 | `jira` | `jira-cli` |
+| `claude` | Claude Code CLI (via installer), VS Code extension, enabled plugins/marketplaces |
 
 ### Adding a module
 

@@ -189,7 +189,6 @@ cask "google-chrome"
 # VS Code extensions
 # ---------------------------------------------------------------------------
 vscode "aaron-bond.better-comments"
-vscode "anthropic.claude-code"
 vscode "atlassian.atlascode"
 vscode "dbaeumer.vscode-eslint"
 vscode "eamodio.gitlens"
