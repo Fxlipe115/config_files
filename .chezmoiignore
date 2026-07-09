@@ -8,10 +8,8 @@ packages.txt
 packages.*.txt
 
 {{/* Feature modules: skip the fragments for modules not enabled here */}}
-{{- $enabled := list }}
-{{- range (splitList "," .modules) }}{{ $enabled = append $enabled (trim .) }}{{ end }}
 {{- range .knownModules }}
-{{- if not (has . $enabled) }}
+{{- if not (has . $.modules) }}
 .config/zsh/modules/{{ . }}.zsh
 {{- end }}
 {{- end }}

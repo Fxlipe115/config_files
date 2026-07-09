@@ -1,6 +1,7 @@
 {{- /* Prompted once per machine; answers are stored in chezmoi's config. */ -}}
-{{- $profile := promptStringOnce . "profile" "Machine profile (work or personal)" -}}
-{{- $modules := promptStringOnce . "modules" "Enabled modules, comma-separated (e.g. node,python,dotnet)" -}}
+{{- $profile := promptChoiceOnce . "profile" "Machine profile" (list "personal" "work") -}}
+{{- $moduleChoices := list "node" "gcloud" "python" "ruby" "texlive" "dotnet" "salesforce" "jira" -}}
+{{- $modules := promptMultichoiceOnce . "modules" "Enabled modules" $moduleChoices -}}
 {{- $gitName := promptStringOnce . "gitName" "Git user name" "Felipe Graeff" -}}
 {{- $personalEmail := promptStringOnce . "personalEmail" "Personal git email" -}}
 {{- /* Personal email is the identity on personal machines; work machines commit under a work email. */ -}}
@@ -12,7 +13,7 @@
 
 [data]
     profile = {{ $profile | quote }}
-    modules = {{ $modules | quote }}
+    modules = {{ $modules | toToml }}
     gitName = {{ $gitName | quote }}
     gitEmail = {{ $gitEmail | quote }}
     personalEmail = {{ $personalEmail | quote }}

@@ -75,11 +75,11 @@ Package-only modules add a `Brewfile.<name>` (macOS) and/or
 
 ### Adding a module
 
-1. If it has shell config, create `dot_config/zsh/modules/<name>.zsh` and add
+1. Add `<name>` to the module choice list in `.chezmoi.toml.tmpl` so it appears in the prompt.
+2. If it has shell config, create `dot_config/zsh/modules/<name>.zsh` and add
    `<name>` to `knownModules` in `.chezmoidata.yaml`.
-2. If it has packages, create `Brewfile.<name>` and/or `packages.<name>.txt`.
-3. Add `<name>` to the `modules` list on machines that need it
-   (`chezmoi init` to re-prompt, or edit the chezmoi config).
+3. If it has packages, create `Brewfile.<name>` and/or `packages.<name>.txt`.
+4. Select `<name>` on machines that need it (`chezmoi init` to re-prompt, or edit the chezmoi config).
 
 ## Secrets (Bitwarden)
 
