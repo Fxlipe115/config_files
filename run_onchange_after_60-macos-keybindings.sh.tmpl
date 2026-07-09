@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+{{ if eq .chezmoi.os "darwin" -}}
+# Re-runs whenever the committed plist changes.
+# plist hash: {{ include "macos/symbolichotkeys.plist" | sha256sum }}
+echo "Importing macOS keyboard shortcuts (symbolichotkeys)..."
+defaults import com.apple.symbolichotkeys "{{ .chezmoi.sourceDir }}/macos/symbolichotkeys.plist"
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u || true
+echo "Imported. A logout/login may be needed for some shortcuts to fully take effect."
+{{ end -}}

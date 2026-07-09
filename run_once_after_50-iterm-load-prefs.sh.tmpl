@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+{{ if eq .chezmoi.os "darwin" -}}
+# Point iTerm2 at the chezmoi-managed prefs folder so it loads them.
+PREFS_DIR="$HOME/.config/iterm2"
+if [ -f "$PREFS_DIR/com.googlecode.iterm2.plist" ]; then
+    current="$(defaults read com.googlecode.iterm2 PrefsCustomFolder 2>/dev/null || true)"
+    if [ "$current" != "$PREFS_DIR" ]; then
+        defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$PREFS_DIR"
+        defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+        echo "iTerm2 set to load preferences from $PREFS_DIR — restart iTerm2 to apply."
+    fi
+fi
+{{ end -}}

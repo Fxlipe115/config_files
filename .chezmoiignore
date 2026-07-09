@@ -6,6 +6,7 @@ Brewfile
 Brewfile.*
 packages.txt
 packages.*.txt
+macos
 
 {{/* VS Code user settings live at OS-specific paths — apply only the right one */}}
 {{- if ne .chezmoi.os "darwin" }}
@@ -13,6 +14,11 @@ Library/Application Support/Code/User/settings.json
 {{- end }}
 {{- if ne .chezmoi.os "linux" }}
 .config/Code/User/settings.json
+{{- end }}
+
+{{/* iTerm2 is macOS-only */}}
+{{- if ne .chezmoi.os "darwin" }}
+.config/iterm2/com.googlecode.iterm2.plist
 {{- end }}
 
 {{/* Feature modules: skip the fragments for modules not enabled here */}}
