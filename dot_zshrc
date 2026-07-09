@@ -1,6 +1,7 @@
 # Set PATH
 export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"     # Standard UNIX utilities
+export PATH="/usr/games:$PATH"         # Debian/Ubuntu: cowsay, fortune, lolcat
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -58,7 +59,7 @@ export TERM=xterm-256color
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 
-eval "$(thefuck --alias)"
+eval "$(thefuck --alias 2>/dev/null)"
 
 #alias python=python3
 alias sqlite=sqlite3
