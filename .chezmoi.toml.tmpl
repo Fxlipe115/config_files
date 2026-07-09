@@ -3,6 +3,7 @@
 {{- $modules := promptStringOnce . "modules" "Enabled modules, comma-separated (e.g. node,python,dotnet)" -}}
 {{- $gitName := promptStringOnce . "gitName" "Git user name" "Felipe Graeff" -}}
 {{- $gitEmail := promptStringOnce . "gitEmail" "Git email" -}}
+{{- $personalEmail := promptStringOnce . "personalEmail" "Personal git email (for personal repos)" -}}
 {{- $useBitwarden := promptBoolOnce . "useBitwarden" "Use Bitwarden for SSH keys" -}}
 
 [data]
@@ -10,4 +11,5 @@
     modules = {{ $modules | quote }}
     gitName = {{ $gitName | quote }}
     gitEmail = {{ $gitEmail | quote }}
+    personalEmail = {{ $personalEmail | quote }}
     useBitwarden = {{ $useBitwarden }}

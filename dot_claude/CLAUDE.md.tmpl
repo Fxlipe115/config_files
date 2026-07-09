@@ -1,0 +1,49 @@
+<!-- Managed by chezmoi (source: config_files/dot_claude/CLAUDE.md.tmpl). Edit the source and run `chezmoi apply`; changes made directly to ~/.claude/CLAUDE.md are overwritten on the next apply. -->
+
+# About me
+
+Felipe Graeff — senior software engineer. These are defaults; adapt to each team's conventions when they differ.
+
+## Communication
+- Be concise. Lead with the result and the *why*/trade-offs, not narration.
+- Don't over-explain or pad. No unsolicited status roundups (e.g. open-PR lists) at the end of a task.
+- Drafting prose I'll send to a human (tickets, PRs, emails): write like a person, not a generator. Avoid AI-writing tells (bolded-claim-then-sentence lists, gratuitous em dashes, rule-of-three, "not just X but Y", wrap-up restatements, marketing adjectives, filler openers/closers like "Let's dive in", "It's crucial to note", "In summary"). Never invent supporting evidence, metrics, or anecdotes.
+- Match the audience: no code detail (paths, function names) in messages to non-engineering readers.
+
+## Git & commits
+- Never add a `Co-Authored-By` trailer.
+- Never change git identity (`user.name`/`user.email`), local or global — the already-configured identity is authoritative. If one genuinely needs setting (e.g. a new personal repo → `{{ .personalEmail }}`), give me the command rather than running it yourself.
+- Stage explicitly by path — never `git add -A`/`git add .` (untracked scratch/memory dirs exist).
+- Never force-push, not even `--force-with-lease`. Use merge or a fresh branch instead.
+- Never write the literal `[skip ci]` token in a commit unless CI should actually skip.
+
+## PRs & branching
+- Never push directly to shared/long-lived/release branches — open a PR.
+- One branch per PR, fresh from an up-to-date base (`git fetch` first), kebab-case with a conventional-commit prefix (`feat/`, `fix/`, `chore/`…).
+- Keep PRs narrowly scoped; tangential fixes go in separate follow-ups.
+- Don't stack dependent PRs — wait for the parent to merge, then branch from the fresh base.
+- After follow-up commits, keep the PR description current. Push commits to open PRs promptly.
+- Pick the commit type by deploy intent, not code shape (needs a redeploy → `fix:`/`feat:`, not `refactor:`).
+- I merge my own PRs from the web UI — don't run `gh pr merge`. Never act on others'/Dependabot PRs, and never use closing keywords (`Closes #N`) for PRs/issues I don't intend to close.
+- Jira-first when the team uses it: reference the ticket key in branch and PR; never create tickets unsolicited.
+
+## Code style
+- Prefer the simplest solution that works. Dislike over-engineering, boilerplate, speculative abstraction.
+- Self-documenting code over comments. Comment only non-obvious *why*, and match the file's existing comment density.
+- No comments that reference removed/alternative approaches, file paths, line numbers, or the current reader/machine/moment.
+- Full descriptive names, including short-lived locals (loop indices excepted).
+- Never silence lint/types with `eslint-disable`/`ts-ignore`/`@ts-expect-error` — fix the root cause. Only exception: an unfixable upstream/library issue, and only after asking me first.
+
+## Tooling & verification
+- Add/upgrade dependencies with the package manager the repo's lockfile indicates (`package-lock.json`→npm, `pnpm-lock.yaml`→pnpm, `yarn.lock`→yarn), never by hand-editing manifests.
+- Reproduce a bug locally before fixing it. If the behaviour you're changing isn't covered by a test, add one first.
+- Before calling a PR done, run the repo's own full lint/test/build and check the live CI — don't assume green.
+- Verify live state (PRs, CI) with a command in the same turn; don't assert it from memory.
+- Don't sleep-poll async work — check once and report.
+
+## Docs & safety
+- Consult existing docs before acting — repo README/docs, and project wikis via MCP (Confluence, etc.). Prefer the documented approach over guessing.
+- When a change makes code and docs drift, update the docs in the same change. Keep READMEs, wikis, and diagrams in sync with what the code actually does.
+- Don't commit planning/design/scoping or routine how-to docs to a repo — put them in chat or a GitHub issue. Repo docs describe the *system*, not how to do routine work.
+- Use Mermaid for diagrams in markdown, not ASCII art.
+- Never delete files without confirmation. Prefer documenting a risk over a runtime warning when the constraint is already enforced in code.
