@@ -8,3 +8,6 @@ tap "ankitpokhrel/jira-cli"
 
 # Feature-rich command-line (CLI) client for Atlassian Jira
 brew "ankitpokhrel/jira-cli/jira-cli"
+
+# Jira & Bitbucket for VS Code
+vscode "atlassian.atlascode"

@@ -7,6 +7,14 @@ Brewfile.*
 packages.txt
 packages.*.txt
 
+{{/* VS Code user settings live at OS-specific paths — apply only the right one */}}
+{{- if ne .chezmoi.os "darwin" }}
+Library/Application Support/Code/User/settings.json
+{{- end }}
+{{- if ne .chezmoi.os "linux" }}
+.config/Code/User/settings.json
+{{- end }}
+
 {{/* Feature modules: skip the fragments for modules not enabled here */}}
 {{- range .knownModules }}
 {{- if not (has . $.modules) }}

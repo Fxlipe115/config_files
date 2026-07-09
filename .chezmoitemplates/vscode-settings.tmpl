@@ -1,0 +1,67 @@
+{{- /* VS Code user settings, assembled per OS and enabled modules. */ -}}
+{{- $s := dict
+  "git.autofetch" true
+  "redhat.telemetry.enabled" false
+  "diffEditor.experimental.showMoves" true
+  "diffEditor.experimental.useTrueInlineView" true
+  "git.confirmSync" false
+  "git.ignoreRebaseWarning" true
+  "github.copilot.nextEditSuggestions.enabled" true
+  "js/ts.updateImportsOnFileMove.enabled" "always"
+  "js/ts.tsserver.maxMemory" 8192
+  "csv.enabled" false
+  "githubPullRequests.pullBranch" "never"
+  "gitlens.ai.model" "vscode"
+  "gitlens.ai.vscode.model" "copilot:gpt-4.1"
+  "chat.viewSessions.orientation" "stacked"
+  "xml.server.vmargs" "-Xmx1024M"
+  "terminal.integrated.mouseWheelScrollSensitivity" 3
+  "terminal.integrated.fontFamily" "MesloLGS Nerd Font"
+  "cSpell.userWords" (list "ASPNETCORE" "Datalake" "dryrun" "jsforce")
+  "[typescript]" (dict "editor.defaultFormatter" "esbenp.prettier-vscode")
+  "[typescriptreact]" (dict "editor.defaultFormatter" "esbenp.prettier-vscode")
+  "[jsonc]" (dict "editor.defaultFormatter" "esbenp.prettier-vscode")
+  "[github-actions-workflow]" (dict "editor.defaultFormatter" "redhat.vscode-yaml")
+  "[dockercompose]" (dict
+    "editor.insertSpaces" true
+    "editor.tabSize" 2
+    "editor.autoIndent" "advanced"
+    "editor.defaultFormatter" "redhat.vscode-yaml"
+    "editor.quickSuggestions" (dict "other" true "comments" false "strings" true))
+  "yaml.disableSchemaDetection" (list
+    "**/.github/workflows/*.yml" "**/.github/workflows/*.yaml"
+    "**/.gitea/workflows/*.yml" "**/.gitea/workflows/*.yaml"
+    "**/.forgejo/workflows/*.yml" "**/.forgejo/workflows/*.yaml")
+  "github.copilot.chat.commitMessageGeneration.instructions" (list
+    (dict "text" "Use conventional commit message format.")
+    (dict "text" "On the first line, provide a concise summary of the changes made (50 characters or less).")
+    (dict "text" "Use the imperative mood in the summary (e.g., \"Add\", \"Fix\", \"Update\").")
+    (dict "text" "After the summary, include a blank line followed by a more detailed description of the changes, if necessary.")
+    (dict "text" "Mention any relevant issue numbers or references in the detailed description.")
+    (dict "text" "Don't add details of why something was changed. Focus on what was changed. Avoid comments like \"this improves ...\" or \"with this we avoid...\". Instead, describe the change itself, such as \"Refactor authentication logic\" or \"Add user profile page\"."))
+-}}
+{{- /* OS-specific: terminal profile and env are keyed by VS Code's own os suffix */ -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $s = merge $s (dict
+        "python.defaultInterpreterPath" "/opt/homebrew/bin/python3"
+        "terminal.integrated.env.osx" (dict "SKIP_BYOBU" "1")
+        "terminal.integrated.defaultProfile.osx" "zsh"
+        "terminal.integrated.profiles.osx" (dict "zsh" (dict "path" "/bin/zsh" "args" (list "-l")))) -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   $s = merge $s (dict
+        "terminal.integrated.env.linux" (dict "SKIP_BYOBU" "1")
+        "terminal.integrated.defaultProfile.linux" "zsh") -}}
+{{- end -}}
+{{- /* Module-gated tool settings */ -}}
+{{- if has "jira" .modules -}}
+{{-   $s = merge $s (dict
+        "atlascode.jira.startWorkBranchTemplate.customTemplate" `{{{issueKey}}}-{{{summary}}}`
+        "atlascode.bitbucket.enabled" false) -}}
+{{- end -}}
+{{- if and (has "salesforce" .modules) (eq .chezmoi.os "darwin") -}}
+{{-   $s = merge $s (dict "salesforcedx-vscode-apex.java.home" "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home") -}}
+{{- end -}}
+{{- if has "claude" .modules -}}
+{{-   $s = merge $s (dict "claudeCode.preferredLocation" "sidebar") -}}
+{{- end -}}
+{{ $s | toPrettyJson }}
