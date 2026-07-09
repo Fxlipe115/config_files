@@ -2,8 +2,12 @@
 {{- $profile := promptStringOnce . "profile" "Machine profile (work or personal)" -}}
 {{- $modules := promptStringOnce . "modules" "Enabled modules, comma-separated (e.g. node,python,dotnet)" -}}
 {{- $gitName := promptStringOnce . "gitName" "Git user name" "Felipe Graeff" -}}
-{{- $gitEmail := promptStringOnce . "gitEmail" "Git email" -}}
-{{- $personalEmail := promptStringOnce . "personalEmail" "Personal git email (for personal repos)" -}}
+{{- $personalEmail := promptStringOnce . "personalEmail" "Personal git email" -}}
+{{- /* Personal email is the identity on personal machines; work machines commit under a work email. */ -}}
+{{- $gitEmail := $personalEmail -}}
+{{- if eq $profile "work" -}}
+{{-   $gitEmail = promptStringOnce . "workEmail" "Work git email" -}}
+{{- end -}}
 {{- $useBitwarden := promptBoolOnce . "useBitwarden" "Use Bitwarden for SSH keys" -}}
 
 [data]

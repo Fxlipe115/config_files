@@ -6,7 +6,7 @@ if [ ! -d "$ZSH_DIR" ]; then
     echo "Installing Oh My Zsh..."
     RUNZSH=no CHSH=no sh -c \
         "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
-        "" --unattended
+        "" --unattended --keep-zshrc
 fi
 
 CUSTOM="${ZSH_CUSTOM:-$ZSH_DIR/custom}"

@@ -1,6 +1,7 @@
 {{/* Repo files that are not dotfiles — never apply these to $HOME */}}
-README.md
-LICENSE
+/README.md
+/LICENSE
+/CLAUDE.md
 Brewfile
 Brewfile.*
 packages.txt

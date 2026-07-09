@@ -37,3 +37,4 @@ stow
 thefuck
 vim
 wget
+zsh
