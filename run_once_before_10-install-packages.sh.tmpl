@@ -40,7 +40,7 @@ install_pkg() {
 install_list() {
     [ -f "$1" ] || return 0
     # Read the list on FD 3 so a package installer (e.g. debconf) can't drain it via stdin.
-    while IFS= read -r pkg <&3; do
+    while IFS= read -r pkg <&3 || [ -n "$pkg" ]; do
         pkg="${pkg%%#*}"; pkg="$(echo "$pkg" | xargs)"
         [ -z "$pkg" ] && continue
         install_pkg "$pkg" || echo "WARNING: could not install '$pkg', skipping" >&2
