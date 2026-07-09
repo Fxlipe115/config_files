@@ -12,6 +12,7 @@ fetch
 ffmpeg
 figlet
 flac
+fontconfig
 fortune
 gh
 git
@@ -35,6 +36,7 @@ ruby
 sl
 stow
 thefuck
+unzip
 vim
 wget
 zsh

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+{{ if eq .chezmoi.os "linux" -}}
+# macOS installs this via the font-meslo-lg-nerd-font cask; Linux fetches it here.
+if ! fc-list 2>/dev/null | grep -qi "MesloLGS Nerd Font"; then
+    echo "Installing Meslo Nerd Font..."
+    dest="$HOME/.local/share/fonts/MesloNerdFont"
+    tmp="$(mktemp -d)"
+    curl -fsSL -o "$tmp/Meslo.zip" \
+        https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
+    mkdir -p "$dest"
+    unzip -oq "$tmp/Meslo.zip" -d "$dest"
+    rm -rf "$tmp"
+    fc-cache -f "$dest" >/dev/null
+fi
+{{ end -}}
