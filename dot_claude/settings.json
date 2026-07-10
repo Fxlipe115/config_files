@@ -1,13 +1,20 @@
 {
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
-    "ponytail@ponytail": true
+    "ponytail@ponytail": true,
+    "claude-mermaid@claude-mermaid": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {
       "source": {
         "source": "github",
         "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "claude-mermaid": {
+      "source": {
+        "source": "github",
+        "repo": "veelenga/claude-mermaid"
       }
     }
   },
