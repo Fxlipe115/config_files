@@ -24,6 +24,7 @@ groovy
 htop
 hub
 imagemagick
+jq
 less
 lolcat
 manpages-dev
