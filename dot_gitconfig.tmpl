@@ -13,3 +13,8 @@
 	autocrlf = input
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/allowed_signers
+{{- /* Repos under my personal GitHub account commit as personalEmail, even on a work machine. */}}
+[includeIf "hasconfig:remote.*.url:git@github.com:Fxlipe115/**"]
+	path = ~/.config/git/personal.inc
+[includeIf "hasconfig:remote.*.url:https://github.com/Fxlipe115/**"]
+	path = ~/.config/git/personal.inc
