@@ -1,0 +1,1 @@
+{{ .gitEmail }} {{ (bitwarden "item" (printf "ssh-git-signing-%s" .profile)).sshKey.publicKey }}

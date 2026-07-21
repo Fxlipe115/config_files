@@ -44,6 +44,8 @@ brew "curl"
 brew "docker"
 # More intuitive version of du in rust
 brew "dust"
+# Embeddable SQL OLAP database management system
+brew "duckdb"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
@@ -153,6 +155,8 @@ cask "rafaelswi/menubarusb/menubarusb"
 # ---------------------------------------------------------------------------
 # Secure and free password manager for all of your devices
 brew "bitwarden-cli"
+# Password manager app
+cask "bitwarden"
 # Apple Mail plugin for GnuPG encrypted e-mails
 cask "free-gpgmail"
 # Tools to protect your files
@@ -184,6 +188,18 @@ cask "android-platform-tools"
 cask "firefox"
 # Web browser
 cask "google-chrome"
+
+# ---------------------------------------------------------------------------
+# Casks — communication & media
+# ---------------------------------------------------------------------------
+# Instant messaging application
+cask "whatsapp"
+# Instant messaging application focused on security
+cask "signal"
+# Music streaming service
+cask "spotify"
+# Multimedia player
+cask "vlc"
 
 # ---------------------------------------------------------------------------
 # VS Code extensions

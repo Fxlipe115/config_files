@@ -41,4 +41,5 @@ Library/Application Support/Code/User/keybindings.json
 .ssh/github.pub
 .ssh/git-signing
 .ssh/git-signing.pub
+.ssh/allowed_signers
 {{- end }}
