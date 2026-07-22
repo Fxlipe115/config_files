@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+{{ if eq .chezmoi.os "darwin" -}}
+# Re-runs whenever a committed app-prefs plist changes.
+# alt-tab hash: {{ include "macos/com.lwouis.alt-tab-macos.plist" | sha256sum }}
+# rectangle hash: {{ include "macos/com.knollsoft.Rectangle.plist" | sha256sum }}
+SRC="{{ .chezmoi.sourceDir }}/macos"
+
+import_prefs() {  # $1 = defaults domain, $2 = app name to quit first
+    [ -f "$SRC/$1.plist" ] || return 0
+    # Quit the app first: it rewrites its plist on exit and would clobber the import.
+    osascript -e "quit app \"$2\"" 2>/dev/null || true
+    defaults import "$1" "$SRC/$1.plist"
+    echo "Imported $1 preferences."
+}
+
+import_prefs com.lwouis.alt-tab-macos AltTab
+import_prefs com.knollsoft.Rectangle  Rectangle
+echo "AltTab & Rectangle preferences imported — relaunch the apps to apply."
+{{ end -}}

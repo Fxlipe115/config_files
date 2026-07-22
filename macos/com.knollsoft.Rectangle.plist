@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSStatusItem Preferred Position Item-0</key>
+	<real>535</real>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>554 513 620 398 0 0 1728 1083 </string>
+	<key>NSWindow Frame SUUpdateAlert2</key>
+	<string>589 511 550 402 0 0 1728 1084 </string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUHasLaunchedBefore</key>
+	<true/>
+	<key>SULastCheckTime</key>
+	<date>2026-07-16T12:18:44Z</date>
+	<key>SUUpdateGroupIdentifier</key>
+	<integer>320652489</integer>
+	<key>allowAnyShortcut</key>
+	<true/>
+	<key>alternateDefaultShortcuts</key>
+	<true/>
+	<key>doubleClickTitleBar</key>
+	<integer>0</integer>
+	<key>hapticFeedbackOnSnap</key>
+	<integer>2</integer>
+	<key>hideMenubarIcon</key>
+	<false/>
+	<key>internalTilingNotified</key>
+	<true/>
+	<key>lastVersion</key>
+	<string>102</string>
+	<key>launchOnLogin</key>
+	<true/>
+	<key>notifiedOfProblemApps</key>
+	<true/>
+	<key>reflowTodo</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>45</integer>
+		<key>modifierFlags</key>
+		<integer>786432</integer>
+	</dict>
+	<key>subsequentExecutionMode</key>
+	<integer>1</integer>
+	<key>todo</key>
+	<integer>2</integer>
+	<key>toggleTodo</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>11</integer>
+		<key>modifierFlags</key>
+		<integer>786432</integer>
+	</dict>
+</dict>
+</plist>
