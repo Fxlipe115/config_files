@@ -4,7 +4,7 @@ set -euo pipefail
 SOURCE_DIR="{{ .chezmoi.sourceDir }}"
 MODULES=({{ range .modules }}{{ . | quote }} {{ end }})
 
-{{ if eq .chezmoi.os "darwin" -}}
+{{ if true -}}
 # ---------------------------------------------------------------------------
 # macOS — Homebrew + Brewfiles
 # ---------------------------------------------------------------------------
