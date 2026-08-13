@@ -82,8 +82,6 @@ brew "jq"
 brew "hub"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
-# Feature-rich command-line (CLI) client for Atlassian Jira
-brew "ankitpokhrel/jira-cli/jira-cli"
 # Pager program similar to more
 brew "less"
 # A fully functional local AWS cloud stack
