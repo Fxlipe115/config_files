@@ -132,6 +132,8 @@ brew "uv"
 brew "vim"
 # Internet file retriever
 brew "wget"
+# zsh
+brew "zsh"
 
 # ---------------------------------------------------------------------------
 # Casks & macOS-specific apps (Skipped on Linux)
