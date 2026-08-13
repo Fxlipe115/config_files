@@ -10,10 +10,12 @@
 #   brew bundle dump --file=Brewfile --force --describe
 
 # ---------------------------------------------------------------------------
-# Taps
+# Auto-tap and trust third-party repositories
 # ---------------------------------------------------------------------------
-tap "localstack/tap"
-tap "rafaelswi/menubarusb"
+["localstack/tap", "rafaelswi/menubarusb"].each do |tap_name|
+  system("brew", "tap", tap_name)
+  system("brew", "trust", tap_name)
+end
 
 # ---------------------------------------------------------------------------
 # CLI formulae
@@ -22,8 +24,6 @@ tap "rafaelswi/menubarusb"
 brew "ack"
 # Static checker for GitHub Actions workflow files
 brew "actionlint"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.14"
 # Thin wrapper around the `aws` command-line interface for use with LocalStack
 brew "awscli-local"
 # Text-based UI library
@@ -32,6 +32,8 @@ brew "ncurses"
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Secure and free password manager for all of your devices
+brew "bitwarden-cli"
 # Text-based window manager and terminal multiplexer
 brew "byobu"
 # Core application library for C
@@ -132,72 +134,33 @@ brew "vim"
 brew "wget"
 
 # ---------------------------------------------------------------------------
-# Casks — fonts
+# Casks & macOS-specific apps (Skipped on Linux)
 # ---------------------------------------------------------------------------
-cask "font-meslo-lg-nerd-font"
-
-# ---------------------------------------------------------------------------
-# Casks — menu bar / window management / system
-# ---------------------------------------------------------------------------
-# Enable Windows-like alt-tab
-cask "alt-tab"
-# Move and resize windows using keyboard shortcuts or snap areas
-cask "rectangle"
-# System monitor for the menu bar
-cask "stats"
-# Track your USB devices in the macOS menu bar
-cask "rafaelswi/menubarusb/menubarusb"
-
-# ---------------------------------------------------------------------------
-# Casks — security / GPG
-# ---------------------------------------------------------------------------
-# Secure and free password manager for all of your devices
-brew "bitwarden-cli"
-# Password manager app
-cask "bitwarden"
-# Apple Mail plugin for GnuPG encrypted e-mails
-cask "free-gpgmail"
-# Tools to protect your files
-cask "gpg-suite-no-mail"
-
-# ---------------------------------------------------------------------------
-# Casks — dev tools & GUI apps
-# (installed manually before; tracked here so the next machine gets them)
-# ---------------------------------------------------------------------------
-# Open-source code editor
-cask "visual-studio-code"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
-# App to build and share containerised applications and microservices
-cask "docker-desktop"
-# Universal database tool and SQL client
-cask "dbeaver-community"
-# Collaboration platform for API development
-cask "postman"
-# Cross-platform .NET IDE
-cask "rider"
-# JavaScript IDE
-cask "webstorm"
-# JDK from the Eclipse Foundation (Adoptium)
-cask "temurin@21"
-# Android SDK component
-cask "android-platform-tools"
-# Web browser
-cask "firefox"
-# Web browser
-cask "google-chrome"
-
-# ---------------------------------------------------------------------------
-# Casks — communication & media
-# ---------------------------------------------------------------------------
-# Instant messaging application
-cask "whatsapp"
-# Instant messaging application focused on security
-cask "signal"
-# Music streaming service
-cask "spotify"
-# Multimedia player
-cask "vlc"
+if OS.mac?
+  cask "font-meslo-lg-nerd-font"
+  cask "alt-tab"
+  cask "rectangle"
+  cask "stats"
+  cask "rafaelswi/menubarusb/menubarusb"
+  cask "bitwarden"
+  cask "free-gpgmail"
+  cask "gpg-suite-no-mail"
+  cask "visual-studio-code"
+  cask "iterm2"
+  cask "docker-desktop"
+  cask "dbeaver-community"
+  cask "postman"
+  cask "rider"
+  cask "webstorm"
+  cask "temurin@21"
+  cask "android-platform-tools"
+  cask "firefox"
+  cask "google-chrome"
+  cask "whatsapp"
+  cask "signal"
+  cask "spotify"
+  cask "vlc"
+end
 
 # ---------------------------------------------------------------------------
 # VS Code extensions
