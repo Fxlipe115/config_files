@@ -89,7 +89,7 @@ brew "localstack/tap/localstack-cli"
 # Rainbows and unicorns in your console!
 brew "lolcat"
 # Fast, highly customisable system info script
-brew "neofetch"
+brew "fastfetch"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Port scanning utility for large networks
